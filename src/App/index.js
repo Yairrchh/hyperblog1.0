@@ -9,6 +9,7 @@ import { LogoutPage } from "../Pages/LogoutPage";
 import { AuthProvider} from "../auth"
 import {AuthRoute } from "../auth";
 import { PostProvider } from "../Context";
+import { SearchUserPage } from "../Pages/SearchUserPage";
 
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
 
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/logout" element={<AuthRoute> <LogoutPage/> </AuthRoute>}/>
-          <Route path="/profile" element={<AuthRoute> <ProfilePage/> </AuthRoute>}/>
+          <Route path="/profile/" element={<AuthRoute> <SearchUserPage/> </AuthRoute>}/>
+          <Route path="/profile/:username" element={<AuthRoute> <ProfilePage/> </AuthRoute>}/>
 
 
           <Route path="*" element={<p>Not Fount</p>}/>

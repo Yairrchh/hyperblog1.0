@@ -1,42 +1,40 @@
 import { useNavigate, Navigate, useLocation } from "react-router-dom";
 import React from "react";
+import { userInformation } from "./userInformation";
 
 //const adminLits = ['Dyrroth','Yairrchh','Olintoxx']
 
 const AuthContext = React.createContext();
 
-const adminLits = [
-    {
-        name: 'freddier',
-        rol: 'admin'
-    },
-    {
-        name: 'yairrchh',
-        rol: 'admin'
-    },
-    {
-        name: 'Diegox',
-        rol: 'admin'
-    },
-    {
-        name: 'juandc',
-        rol: 'author'
-    },
-    {
-        name: 'isbersuar',
-        rol: 'author'
-    }
-]
+// const adminLits = [
+//     {
+//         name: 'freddier',
+//         rol: 'admin'
+//     },
+//     {
+//         name: 'yairrchh',
+//         rol: 'admin'
+//     },
+//     {
+//         name: 'juandc',
+//         rol: 'author'
+//     },
+//     {
+//         name: 'isbersuar',
+//         rol: 'author'
+//     }
+// ]
 
 function AuthProvider({children}) {
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/profile";
     const [user, setUser] = React.useState();
+    console.log(user)
 
     const login = ({username}) => {
 
-        const isAdmin = adminLits.filter(admin => admin.name === username)
+        const isAdmin = userInformation.filter(admin => admin.user === username)
         const validUser = isAdmin.length > 0 ? isAdmin[0].rol : 'reader'
         console.log(validUser)
 
@@ -53,7 +51,7 @@ function AuthProvider({children}) {
         user,
         login,
         logout,
-        location
+        location,
     }
 
     return (
